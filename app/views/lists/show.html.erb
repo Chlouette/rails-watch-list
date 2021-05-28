@@ -1,4 +1,14 @@
 <h2><%= @list.name %></h2>
+<% @list.bookmarks.each do |bookmark| %>
+  <li>
+    <%= bookmark.movie.title %> -
+    <%= bookmark.comment %> -
+    <%= link_to "Delete",
+      bookmark_path(bookmark), # this will get the id of the instance bookmark and pass it in the path /bookmarks/:id
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+    </li>
+<% end %>
 
 <%= link_to 'Back to watchlist', lists_path %>
 <%= link_to 'Add a bookmark', new_list_bookmark_path(@list)  %>

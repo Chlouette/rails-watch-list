@@ -1,4 +1,11 @@
-<%= simple_form_for [ @list, @bookmark ] do |f| %>
+<%= simple_form_for ([@list, @bookmark]) do |f| %>
+<!-- if you only call @bookmark, it will generate a path /bookmarks, which doesn't exist -->
   <%= f.input :comment %>
+  <!-- select a movie from the dropdown list to add to the list -->
+  <%= f.association :movie, label_method: :title, value_method: :id %>
   <%= f.submit "Save bookmark", class: "btn btn-primary" %>
+  <!-- once the form is filled, it will go to bookmarks controllers -->
 <% end %>
+
+<%= link_to "Cancel", list_path(@list) %>
+<%# <form action="" method="post"></form> %>
